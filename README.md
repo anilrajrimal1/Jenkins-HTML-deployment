@@ -23,6 +23,8 @@ To set up the Apache server and PHP on your webserver, follow the steps below:
    sudo yum -y install httpd php
 
     ```
+![install-httpd](https://github.com/anilrajrimal1/myhtml/blob/master/screenshots/install%20httpd%20on%20Anil.png)
+
 - Start the Apache service:
    ```bash
    # Start the Apache service
@@ -33,8 +35,10 @@ To set up the Apache server and PHP on your webserver, follow the steps below:
 - Enable the Apache service to start on boot:
    ```bash
    # Enable Apache service for startup
-    sudo systemctl enable httpd  
+    sudo systemctl enable httpd 
+    sudo systemctl status httpd
     ```
+![status-httpd](https://github.com/anilrajrimal1/myhtml/blob/master/screenshots/httpd%20status.png)
 
 - Add the HTTP service to the firewall (permanent):
    ```bash
@@ -46,35 +50,36 @@ To set up the Apache server and PHP on your webserver, follow the steps below:
    ```bash
    # Reload the firewall
     sudo firewall-cmd --reload
-   
-    ```
 
+    ```
+![firewall](https://github.com/anilrajrimal1/myhtml/blob/master/screenshots/firewall%20port.png)
 These commands will install Apache server and PHP, start the Apache service, enable it for startup, and configure the firewall to allow HTTP traffic.
 
+## 2. Creating, Editing, and Deleting index.html File in /var/www/html of Webserver
 
-## 4. Jenkins configuration for "GitHub" and "Publish Over SSH
+To create, edit, and delete an `index.html` file on your webserver, follow the steps below:
 
-To configure Jenkins with the "GitHub" and "Publish Over SSH" plugins, follow the steps below:
+### **Create and Edit index.html:**
+   - Open the `index.html` file in the `/var/www/html` directory using a text editor (e.g., vi):
+     ```bash
+     # Open index.html file
+     sudo vi /var/www/html/index.html
+     ```
+     - Add your HTML code to the file.
+     - Save and exit the text editor.
 
-### Install Plugins for GitHub and Publish Over SSH:
-   - Open the Jenkins dashboard.
-   - Navigate to "Manage Jenkins" > "Manage Plugins."
-   - In the "Available" tab, search for "GitHub Integration" and "Publish Over SSH."
-   - Install both plugins without restarting Jenkins.
+### **Preview Changes:**
+   - After editing the file, refresh your IP or hostname in your web browser to view the changes.
 
-### Configure GitHub Integration:
-- After installing the GitHub Integration plugin, navigate to the Jenkins dashboard.
-- Go to "Manage Jenkins" > "Configure System."
-- Look for the "GitHub" section.
-- Enter the GitHub server and credentials information.
+### **Delete index.html (Optional):**
+   - If needed, you can remove the `index.html` file:
+     ```bash
+     # Remove index.html file
+     sudo rm -f /var/www/html/index.html
+     ```
+     This command will delete the `index.html` file from the specified directory.
 
-### Configure Publish Over SSH:
-- After installing the Publish Over SSH plugin, navigate to the Jenkins dashboard.
-- Go to "Manage Jenkins" > "Configure System."
-- Look for the "Publish over SSH" section.
-- Configure the SSH server details for automated file transfer.
-
-Now, Jenkins is configured to integrate with GitHub, and the "Publish Over SSH" plugin is set up for automated file transfer to the webserver.
+Remember to replace `<your code>` with your actual HTML code in the `index.html` file.
 
 ## 3. Creating New Repo in GitHub for Our HTML Project
 To create a new GitHub repository for your HTML project and initialize it locally, follow the steps below:
@@ -113,6 +118,9 @@ To create a new GitHub repository for your HTML project and initialize it locall
 
     # add your html code
    ```
+
+![html-code](https://github.com/anilrajrimal1/myhtml/blob/master/screenshots/index%20on%20Developer.png)
+
 - Add and commit changes:
    ```bash
     git add -A
@@ -125,6 +133,8 @@ To create a new GitHub repository for your HTML project and initialize it locall
    ```
 
 These commands create a new GitHub repository, set up a local Git repository, and push your HTML project to the GitHub repository.
+
+
 ## 4. Jenkins configuration for "GitHub" and "Publish Over SSH
 
 To configure Jenkins with the "GitHub" and "Publish Over SSH" plugins, follow the steps below:
@@ -134,6 +144,8 @@ To configure Jenkins with the "GitHub" and "Publish Over SSH" plugins, follow th
    - Navigate to "Manage Jenkins" > "Manage Plugins."
    - In the "Available" tab, search for "GitHub Integration" and "Publish Over SSH."
    - Install both plugins without restarting Jenkins.
+![github-plugin](https://github.com/anilrajrimal1/myhtml/blob/master/screenshots/github%20plugin.png)
+![ssh-plugin](https://github.com/anilrajrimal1/myhtml/blob/master/screenshots/ssh%20plugin.png)
 
 ### Configure GitHub Integration:
 - After installing the GitHub Integration plugin, navigate to the Jenkins dashboard.
@@ -141,11 +153,13 @@ To configure Jenkins with the "GitHub" and "Publish Over SSH" plugins, follow th
 - Look for the "GitHub" section.
 - Enter the GitHub server and credentials information.
 
+
 ### Configure Publish Over SSH:
 - After installing the Publish Over SSH plugin, navigate to the Jenkins dashboard.
 - Go to "Manage Jenkins" > "Configure System."
 - Look for the "Publish over SSH" section.
 - Configure the SSH server details for automated file transfer.
+![conf-ssh](https://github.com/anilrajrimal1/myhtml/blob/master/screenshots/ssh%20server%20added%20on%20jenkins.png)
 
 Now, Jenkins is configured to integrate with GitHub, and the "Publish Over SSH" plugin is set up for automated file transfer to the webserver.
 
@@ -197,6 +211,8 @@ To configure SSH authentication between Jenkins and GitHub, follow the steps bel
      - Enter the private key directly: Click on "Add" and paste the copied private key.
      - Click "Create."
 
+![add-credentials](https://github.com/anilrajrimal1/myhtml/blob/master/screenshots/global%20credential%20set.png)
+
 Now, Jenkins is configured with SSH authentication for communication with GitHub.
 
 ## 6. Set IP address, username, and password of webserver in Jenkins for automated file transfer (Publish Over SSH)
@@ -226,8 +242,9 @@ To configure Jenkins for automated file transfer to the webserver using "Publish
 - Click "Save" to apply the changes.
 
 Now, Jenkins is configured with the necessary details to perform automated file transfer to the webserver using the "Publish Over SSH" plugin.
-## 7. Creating a job in Jenkins to pull index.html from GitHub repo and send it to the webserver into /var/www/html directory
 
+
+## 7. Creating a job in Jenkins to pull index.html from GitHub repo and send it to the webserver into /var/www/html directory
 
 To create a Jenkins job for automating the process of pulling `index.html` from a GitHub repo and sending it to the webserver, follow the steps below:
 
@@ -241,16 +258,19 @@ To create a Jenkins job for automating the process of pulling `index.html` from 
    - Under "Source Code Management," select "Git."
    - Enter the repository URL and provide the necessary credentials.
 
+![Repo-job](https://github.com/anilrajrimal1/myhtml/blob/master/screenshots/added%20repo%20to%20job.png)
+
 ### Configure the Build Trigger:
    - Under "Build Triggers," select "Poll SCM."
    - Set the schedule to run the job using Cron syntax, e.g., `* * * * *` for polling every minute.
+
+![build-trigger](https://github.com/anilrajrimal1/myhtml/blob/master/screenshots/set%20build%20trigger.png)
 
 ### Configure the Post-Build Action:
    - Under "Post-build Actions," select "Send build artifact over SSH."
      - Choose the SSH server previously configured (webserver).
      - Set the "Source files" to `index.html`.
      - Set the "Remote directory" to `/var/www/html`.
-
    ```markdown
    - Jenkins Dashboard
      --> New Item (New Job)
@@ -268,8 +288,14 @@ To create a Jenkins job for automating the process of pulling `index.html` from 
            - SSH Server: webserver (Select server name)
            - Source files: index.html
            - Remote directory: /var/www/html
-
 ```
+![post-build](https://github.com/anilrajrimal1/myhtml/blob/master/screenshots/post%20build%20action.png)
+
 - Click "Save" to create the Jenkins job.
 
 Now, Jenkins is configured to pull index.html from the GitHub repo and send it to the webserver's /var/www/html directory after each build.
+
+### Console output and Result on Webserver
+![Console-output](https://github.com/anilrajrimal1/myhtml/blob/master/screenshots/Build%20console%20output.png)
+
+![Anil-Result](https://github.com/anilrajrimal1/myhtml/blob/master/screenshots/Deply%20on%20Anil-User.png)
