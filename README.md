@@ -263,6 +263,7 @@ To create a Jenkins job for automating the process of pulling `index.html` from 
 ### Configure the Build Trigger:
    - Under "Build Triggers," select "Poll SCM."
    - Set the schedule to run the job using Cron syntax, e.g., `* * * * *` for polling every minute.
+   - if you have no idea on Cron Syntax visit :- https://crontab.guru/
 
 ![build-trigger](https://github.com/anilrajrimal1/myhtml/blob/master/screenshots/set%20build%20trigger.png)
 
@@ -278,7 +279,7 @@ To create a Jenkins job for automating the process of pulling `index.html` from 
        - Type: Freestyle project
        - Source Code Management
          - Git
-           - Repository URL: <Your GitHub Repo URL>
+           - Repository URL: <Your GitHub Repo URL> e.g git@github.com:anilrajrimal1/kanban-backend.git
            - Credentials: <Select appropriate credentials>
        - Build Triggers
          - Poll SCM
